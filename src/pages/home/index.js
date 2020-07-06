@@ -2,6 +2,8 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Search from '../../components/search';
 import ListItems from '../../components/listItems';
+import setValuesStorage from '../../utils';
+import dataCities from '../../config/city.list.json';
 
 const Home = () => (
   <>
@@ -13,7 +15,7 @@ const Home = () => (
       alignItems="center"
     >
       <Grid item>
-        <Search />
+        <Search dataCities={dataCities} setValuesStorage={setValuesStorage} />
       </Grid>
       <Grid item>
         <ListItems />
