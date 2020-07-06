@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import urls from '../../config/urls';
 
 const useStyles = makeStyles({
   root: {
@@ -45,8 +46,11 @@ export default function DetailCard({ name, data }) {
         <Typography variant="h5" component="h2">
           {name}
         </Typography>
+        <Typography variant="h6" component="h3">
+          Now
+        </Typography>
         <Typography variant="body2" component="p">
-          Feel likes :
+          Feels Like :
           {' '}
           {feels_like}
           {' '}
@@ -89,7 +93,7 @@ export default function DetailCard({ name, data }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">More Information</Button>
+        <Button size="small" href={urls.getMoreInformation(name)}>More Information</Button>
       </CardActions>
     </Card>
   );
