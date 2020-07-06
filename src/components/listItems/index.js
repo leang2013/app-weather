@@ -22,7 +22,7 @@ export default function ListItems() {
 
   return (
     <>
-      { values && (
+      { values.length > 0 && (
       <div className={classes.root}>
         <Divider />
         <List
@@ -35,8 +35,8 @@ export default function ListItems() {
         )}
         >
           {
-            values.map((value) => (
-              <div key={`item-${value[0]}`}>
+            values.map((value, index) => (
+              <div key={`item-${value[0]}-${index}}`}>
                 <Link to={`detail/${value[1]}`}>
                   <ListItem button>
                     <ListItemText primary={value[0]} />

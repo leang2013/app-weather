@@ -1,5 +1,25 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## App in the cloud
+
+    Vercel: https://app-weather.leang2013.vercel.app/
+
+## Routes
+
+    path / => Main Page
+    path /detail/:Id => Detailed weather for the city
+
+## Some improvements to make
+
+    - Styles
+    - Search
+    - Performance (SSR)
+    - Handling Errors
+    - Logging
+    - Coverage
+    - End-To-End Testing
+    - Unit testing
+
 ## Development
 
 ### `Aclaration`

@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
+import propTypes from 'prop-types';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import matchSorter from 'match-sorter';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
-import dataCities from '../../config/city.list.json';
-import setValuesStorage from '../../utils';
 
 const useStyles = makeStyles({
   option: {
@@ -19,7 +18,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CitySelect() {
+const CitySelect = ({
+  dataCities,
+  setValuesStorage,
+}) => {
   const [cities, setCities] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const classes = useStyles();
@@ -36,14 +38,17 @@ export default function CitySelect() {
   const filteredOptions = (event, value) => {
     if (value.length < 3) return;
     let timer = null;
-    setLoading(true);
+
     clearTimeout(timer);
-    // Make a new timeout set to in 700ms
-    timer = setTimeout(() => {
-      const newOptions = matchSorter(dataCities, value, { keys: ['name'] });
-      setCities(newOptions.slice(0, 5));
-      setLoading(false);
-    }, 700);
+    if (event.type === 'change') {
+      setLoading(true);
+      // Make a new timeout set to in 700ms
+      timer = setTimeout(() => {
+        const newOptions = matchSorter(dataCities, value, { keys: ['name'] });
+        setCities(newOptions.slice(0, 5));
+        setLoading(false);
+      }, 700);
+    }
   };
 
   return (
@@ -95,4 +100,16 @@ export default function CitySelect() {
       />
     </>
   );
-}
+};
+
+CitySelect.defaultProps = {
+  dataCities: [],
+  setValuesStorage: '',
+};
+
+CitySelect.propTypes = {
+  dataCities: propTypes.array,
+  setValuesStorage: propTypes.func,
+};
+
+export default CitySelect;
